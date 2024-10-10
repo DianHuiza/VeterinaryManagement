@@ -1,0 +1,19 @@
+version: '3'
+services:
+  vm-front:
+    build:
+      context: ./apps/vm-front
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./apps/vm-front:/app
+    depends_on:
+      - vm-back
+
+  vm-back:
+    build:
+      context: ./apps/vm-back
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./apps/vm-back:/app
