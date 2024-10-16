@@ -9,6 +9,114 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Employee {
+  id          String        @id @default(uuid())
+  fullName    String
+  email       String        @unique
+  phone       String
+  password    String
+  position    Position      @relation(fields: [positionId], references: [id], onDelete: Cascade)
+  positionId  String
+  role        Role
+  deletedAt   DateTime?
+  currentRoom Room?
+  Appointment Appointment[]
+}
+
+model Position {
+  id          String     @id @default(uuid())
+  position    String
+  description String
+  Employees   Employee[]
+}
+
+model Client {
+  id       String @id @default(uuid())
+  dni      String
+  fullName String
+  email    String @unique
+  phone    String
+  address  String
+  Pets     Pet[]
+}
+
+model Service {
+  id          String        @id @default(uuid())
+  name        String
+  price       Float
+  description String
+  room        RoomType      @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  roomId      String
+  Appointment Appointment[]
+}
+
+model Room {
+  id                    String     @id @default(uuid())
+  name                  String
+  roomTypeId            String
+  roomType              RoomType   @relation(fields: [roomTypeId], references: [id], onDelete: Cascade)
+  status                RoomStatus
+  currentEmployeeId     String     @unique
+  currentEmployee       Employee?  @relation(fields: [currentEmployeeId], references: [id])
+  currentPetId          String     @unique
+  currentPet            Pet?       @relation(fields: [currentPetId], references: [id])
+  maxAppointmentsPerDay Int
+  openAt                String
+  closeAt               String  
+}
+
+model RoomType {
+  id       String    @id @default(uuid())
+  name     String
+  services Service[]
+  rooms    Room[]
+}
+
+model Pet {
+  id                String        @id @default(uuid())
+  name              String
+  species           String
+  breed             String
+  birthday          DateTime
+  client            Client        @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId          String
+  deletedAt         DateTime?
+  medicalRecordPath String?
+  Appointments      Appointment[]
+  currentRoom       Room?
+}
+
+model Appointment {
+  id         String    @id @default(uuid())
+  reason     String
+  date       DateTime
+  pet        Pet       @relation(fields: [petId], references: [id], onDelete: Cascade)
+  petId      String
+  service    Service   @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  serviceId  String
+  servedBy   Employee  @relation(fields: [servedById], references: [id], onDelete: Cascade)
+  servedById String
+  canceledAt DateTime?
+}
+
+model Options {
+  id          String @id @default(uuid())
+  key         String @unique
+  value       String
+  description String
+}
+
+enum Role {
+  ADMIN
+  EMPLOYEE
+}
+
+enum RoomStatus {
+  INACTIVE
+  OCUPED
+  FREE
 }
