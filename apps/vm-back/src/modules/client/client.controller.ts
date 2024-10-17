@@ -32,8 +32,9 @@ export class ClientController {
   @Put(':id')
   async updateClient(
     @Body(new ZodPipe(updateClientSchema)) client: UpdateClientDTO,
+    @Param('id') id,
   ) {
-    return this.clientService.updateClient(client);
+    return this.clientService.updateClient(id, client);
   }
 
   @Delete(':id')
