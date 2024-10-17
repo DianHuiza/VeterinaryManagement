@@ -35,13 +35,14 @@ model Position {
 }
 
 model Client {
-  id       String @id @default(uuid())
-  dni      String
-  fullName String
-  email    String @unique
-  phone    String
-  address  String
-  Pets     Pet[]
+  id        String    @id @default(uuid())
+  dni       String
+  fullName  String
+  email     String    @unique
+  phone     String
+  address   String
+  deletedAt DateTime?
+  Pets      Pet[]
 }
 
 model Service {
@@ -66,7 +67,7 @@ model Room {
   currentPet            Pet?       @relation(fields: [currentPetId], references: [id])
   maxAppointmentsPerDay Int
   openAt                String
-  closeAt               String  
+  closeAt               String
 }
 
 model RoomType {
