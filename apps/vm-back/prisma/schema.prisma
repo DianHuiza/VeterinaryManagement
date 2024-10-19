@@ -60,7 +60,7 @@ model Room {
   name                  String
   roomTypeId            String
   roomType              RoomType   @relation(fields: [roomTypeId], references: [id], onDelete: Cascade)
-  status                RoomStatus
+  status                RoomStatus?
   currentEmployeeId     String     @unique
   currentEmployee       Employee?  @relation(fields: [currentEmployeeId], references: [id])
   currentPetId          String     @unique
@@ -68,6 +68,7 @@ model Room {
   maxAppointmentsPerDay Int
   openAt                String
   closeAt               String
+  outOfServiceAt        DateTime?
 }
 
 model RoomType {
