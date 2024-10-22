@@ -8,6 +8,7 @@ import { RoomTypeModule } from './modules/room-type/room-type.module';
 import { ServicesModule } from './modules/services/services.module';
 import { PositionModule } from './modules/position/position.module';
 import { PetModule } from './modules/pet/pet.module';
+import { AppointmentModule } from './modules/appointment/appointment.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { PetModule } from './modules/pet/pet.module';
     RoomTypeModule,
     PositionModule,
     PetModule,
+    AppointmentModule,
   ],
   controllers: [AppController],
   providers: [AppService],

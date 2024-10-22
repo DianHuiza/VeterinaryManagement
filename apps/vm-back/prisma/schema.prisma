@@ -69,6 +69,7 @@ model Room {
   openAt                String
   closeAt               String
   outOfServiceAt        DateTime?
+  Appointment           Appointment[]
 }
 
 model RoomType {
@@ -100,8 +101,10 @@ model Appointment {
   petId      String
   service    Service   @relation(fields: [serviceId], references: [id], onDelete: Cascade)
   serviceId  String
-  servedBy   Employee  @relation(fields: [servedById], references: [id], onDelete: Cascade)
-  servedById String
+  room       Room      @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  roomId     String
+  servedBy   Employee?  @relation(fields: [servedById], references: [id], onDelete: Cascade)
+  servedById String?
   canceledAt DateTime?
 }
 
