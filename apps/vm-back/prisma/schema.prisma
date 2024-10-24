@@ -112,7 +112,8 @@ model Options {
   id          String @id @default(uuid())
   key         String @unique
   value       String
-  description String
+  type String
+
 }
 
 enum Role {
@@ -124,4 +125,10 @@ enum RoomStatus {
   INACTIVE
   OCUPED
   FREE
+}
+
+enum DataType {
+  NUMBER
+  STRING
+  DATE
 }
