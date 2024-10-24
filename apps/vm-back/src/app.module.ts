@@ -9,6 +9,7 @@ import { ServicesModule } from './modules/services/services.module';
 import { PositionModule } from './modules/position/position.module';
 import { PetModule } from './modules/pet/pet.module';
 import { AppointmentModule } from './modules/appointment/appointment.module';
+import { OptionsModule } from './modules/options/options.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { AppointmentModule } from './modules/appointment/appointment.module';
     PositionModule,
     PetModule,
     AppointmentModule,
+    OptionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
