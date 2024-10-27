@@ -11,7 +11,7 @@ export const Header: React.FC = () => {
             <HeaderLink to="/">Dashboard</HeaderLink>
           </li>
           <li>
-            <HeaderLink to="/appointment">Turnos</HeaderLink>
+            <HeaderLink to="/appointments">Turnos</HeaderLink>
           </li>
           <li>
             <HeaderLink to="/clients">Clientes</HeaderLink>
