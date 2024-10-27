@@ -1,24 +1,25 @@
-import { Link } from 'react-router-dom';
+import { HeaderLink } from './HeaderLink';
+import { UserOptionsDd } from './UserOptionDd';
 
 export const Header: React.FC = () => {
   return (
-    <header className=' flex items-center px-4 py-2'>
-      <div className='flex-1'>CVDC</div>
+    <header className=' fixed w-screen flex items-center px-4 py-4 bg-primary text-light'>
+      <div className='flex-1 text-2xl font-semibold'>CVDC</div>
       <nav className=''>
-        <ul className=' flex gap-5'>
+        <ul className=' flex font font-semibold'>
           <li>
-            <Link to="/">Dashboard</Link>
+            <HeaderLink to="/">Dashboard</HeaderLink>
           </li>
           <li>
-            <Link to="/patient">Turnos</Link>
+            <HeaderLink to="/appointment">Turnos</HeaderLink>
           </li>
           <li>
-            <Link to="/doctor">Clientes</Link>
+            <HeaderLink to="/clients">Clientes</HeaderLink>
           </li>
         </ul>
       </nav>
-      <div className='flex-1'>
-
+      <div className='flex-1 flex justify-end items-center'>
+        <UserOptionsDd />
       </div>
     </header>
   );

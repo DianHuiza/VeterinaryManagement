@@ -1,10 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { Dashboard } from './pages'
+import BaseLayout from './layout/BaseLayout'
 
 const routes = [
   {
-    path: '/',
-    element: <Dashboard/>,
+    element: <BaseLayout />,
+    children: [
+      {
+        path: '/',
+        element: <Dashboard />,
+      },
+    ],
   },
 ]
 

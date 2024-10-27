@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query'
-import { Header } from '../../components/header/Header'
 
 export const Component = () => {
   const {data} = useQuery({
@@ -11,8 +10,7 @@ export const Component = () => {
   })
   return (
     <>
-      <Header/>
-      <div className=' flex items-center justify-center h-screen'>{data?.message ?? 'Loading...'}</div>
+      <div className='min-h-full flex items-center justify-center'>{data?.message ?? 'Loading...'}</div>
     </>
   )
 }
