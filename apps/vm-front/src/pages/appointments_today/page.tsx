@@ -1,7 +1,8 @@
+import AppointmentsList from '../../components/appointments_list/AppointmentsList'
+import { appointments } from '../../mocks/Appointments'
+
 export const Component = () => {
   return (
-    <div>
-      Hoy
-    </div>
+    <AppointmentsList appointments={appointments} />      
   )
 }
