@@ -5,7 +5,7 @@ export const AppointmentNavLink: React.FC<NavLinkProps> = ({ children, ...props 
     <NavLink 
       {...props}
       style={({ isActive }) => ({ backgroundColor: isActive ? '#fefefe' : '#cecfd0' })}
-      className='px-4 py-2 rounded-3xl'
+      className='px-4 py-1 rounded-3xl'
     >
       {children}
     </NavLink>
