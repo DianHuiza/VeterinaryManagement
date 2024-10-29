@@ -5,7 +5,7 @@ const BaseLayout: React.FC = () => {
   return (
     <>
       <Header />
-      <div className='min-h-screen box-border pt-20'>
+      <div className='min-h-screen box-border pt-16'>
         <Outlet />
       </div>
     </>

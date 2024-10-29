@@ -3,7 +3,7 @@ import { UserOptionsDd } from './UserOptionDd';
 
 export const Header: React.FC = () => {
   return (
-    <header className=' fixed w-screen flex items-center px-4 py-4 bg-primary text-light'>
+    <header className=' fixed w-screen flex items-center px-4 py-3 bg-primary text-light'>
       <div className='flex-1 text-2xl font-semibold'>CVDC</div>
       <nav className=''>
         <ul className=' flex font font-semibold'>
