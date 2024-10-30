@@ -1,10 +1,13 @@
 import { AppointmentDetail } from '../../types';
+import { BordedButton } from '../buttons/BordedButton';
+import { SolidButton } from '../buttons/SolidButton';
 
 interface AppointmentCardProps {
   appointnment: AppointmentDetail
+  canServe?: boolean
 }
  
-export const AppointmentCard: React.FC<AppointmentCardProps> = ({ appointnment }) => {
+export const AppointmentCard: React.FC<AppointmentCardProps> = ({ appointnment, canServe }) => {
   return (
     <div style={{borderColor: appointnment.room.color}} className='rounded-lg bg-light mb-2 min-h-32 border-t-4 py-2 px-6'>
       <div className=' flex justify-between'>
@@ -15,12 +18,13 @@ export const AppointmentCard: React.FC<AppointmentCardProps> = ({ appointnment }
         </div>
       </div>
       <div className='text-lg mb-2 font-medium'>
-        <span>{appointnment.room.name}</span>
-        <span>{appointnment.service.name}</span>
+        <span>{appointnment.room.name}: {appointnment.service.name}</span>
       </div>
       <p>{appointnment.reason}</p>
-      <div>
-        <button>Atender</button>
+      <div className='flex gap-2 justify-end mt-4 mb-2'>
+        <SolidButton colorClass='bg-light hover:text-dark text-primary border-'>Eliminar</SolidButton>
+        <BordedButton colorClass='hover:text-dark text-primary'>Posponer</BordedButton>
+        {canServe && <SolidButton colorClass='bg-primary text-light hover:bg-dark'>Atender</SolidButton>}
       </div>
     </div>
   );
