@@ -1,10 +1,44 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { Dashboard } from './pages'
+import { Appointments, AppointmentsMissed, AppointmentsPending, AppointmentsToday, ClientInfo, Clients, Dashboard } from './pages'
+import BaseLayout from './layout/BaseLayout'
 
 const routes = [
   {
-    path: '/',
-    element: <Dashboard/>,
+    element: <BaseLayout />,
+    children: [
+      {
+        path: '/',
+        element: <Dashboard />,
+      },
+      {
+        path: '/appointments',
+        element: <Appointments />,
+        children: [
+          {
+            path: 'today',
+            element: <AppointmentsToday />,
+          },
+          {
+            path: 'pending',
+            element: <AppointmentsPending />,
+          },
+          {
+            path: 'missed',
+            element: <AppointmentsMissed />,
+          },
+        ],
+      },
+      {
+        path: '/clients',
+        element: <Clients />,
+        children: [
+          {
+            path: 'info:id',
+            element: <ClientInfo />,
+          },
+        ],
+      },
+    ],
   },
 ]
 

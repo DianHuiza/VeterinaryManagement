@@ -8,5 +8,9 @@ export const Component = () => {
       return await res.json()
     }
   })
-  return <div className=' flex items-center justify-center h-screen'>{data?.message ?? 'Loading...'}</div>
+  return (
+    <>
+      <div className='min-h-full flex items-center justify-center'>{data?.message ?? 'Loading...'}</div>
+    </>
+  )
 }

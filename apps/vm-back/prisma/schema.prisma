@@ -56,20 +56,22 @@ model Service {
 }
 
 model Room {
-  id                    String     @id @default(uuid())
-  name                  String
-  roomTypeId            String
-  roomType              RoomType   @relation(fields: [roomTypeId], references: [id], onDelete: Cascade)
-  status                RoomStatus?
-  currentEmployeeId     String     @unique
-  currentEmployee       Employee?  @relation(fields: [currentEmployeeId], references: [id])
-  currentPetId          String     @unique
-  currentPet            Pet?       @relation(fields: [currentPetId], references: [id])
-  maxAppointmentsPerDay Int
-  openAt                String
-  closeAt               String
-  outOfServiceAt        DateTime?
-  Appointment           Appointment[]
+  id                     String        @id @default(uuid())
+  name                   String
+  color                  String
+  roomTypeId             String
+  roomType               RoomType      @relation(fields: [roomTypeId], references: [id], onDelete: Cascade)
+  status                 RoomStatus?
+  currentEmployeeId      String        @unique
+  currentEmployee        Employee?     @relation(fields: [currentEmployeeId], references: [id])
+  currentPetId           String        @unique
+  currentPet             Pet?          @relation(fields: [currentPetId], references: [id])
+  minAppointmentDuration Int
+  maxAppointmentDuration Int
+  openAt                 String
+  closeAt                String
+  outOfServiceAt         DateTime?
+  Appointment            Appointment[]
 }
 
 model RoomType {
@@ -96,24 +98,24 @@ model Pet {
 model Appointment {
   id         String    @id @default(uuid())
   reason     String
-  date       DateTime
+  initDate   DateTime
+  endDate    DateTime
   pet        Pet       @relation(fields: [petId], references: [id], onDelete: Cascade)
   petId      String
   service    Service   @relation(fields: [serviceId], references: [id], onDelete: Cascade)
   serviceId  String
   room       Room      @relation(fields: [roomId], references: [id], onDelete: Cascade)
   roomId     String
-  servedBy   Employee?  @relation(fields: [servedById], references: [id], onDelete: Cascade)
+  servedBy   Employee? @relation(fields: [servedById], references: [id], onDelete: Cascade)
   servedById String?
   canceledAt DateTime?
 }
 
 model Options {
-  id          String @id @default(uuid())
-  key         String @unique
-  value       String
-  type String
-
+  id    String @id @default(uuid())
+  key   String @unique
+  value String
+  type  String
 }
 
 enum Role {
