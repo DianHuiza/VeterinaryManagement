@@ -6,9 +6,9 @@ export default {
   ],
   theme: {
     colors: {
-      'primary': '#276e90',
+      'primary': '#276ea0',
       'secondary' : '#cecfd0',
-      'dark' : '#0a3143',
+      'dark' : '#2a4163',
       'light' : '#fefefe',
 
     },
