@@ -4,7 +4,7 @@ import { RoomsList } from './components/RoomsList'
 
 export const Component = () => {
   return (
-    <div className='grid grid-cols-4 gap-4 m-4 items-start'>
+    <div className='grid grid-cols-4 gap-4 p-4 items-start pt-20'>
       <div>
         <RoomsList />
       </div>

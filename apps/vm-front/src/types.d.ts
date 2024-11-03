@@ -123,3 +123,7 @@ export enum DataType {
   BOOLEAN = 'BOOLEAN',
   DATE = 'DATE',
 }
+
+export interface IconProps {
+  className?: string;
+}
