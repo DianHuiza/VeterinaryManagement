@@ -70,11 +70,8 @@ export interface Pet {
   species: string;
   breed: string;
   birthday: Date;
-  clientId: string;
-  deletedAt?: Date;
+  deletedAt?: string;
   medicalRecordPath?: string;
-  appointments: Appointment[];
-  currentRoom?: Room;
 }
 
 export interface PetWithClient extends Pet {
