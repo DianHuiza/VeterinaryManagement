@@ -8,5 +8,6 @@ export * from './dropdown/DropdownItem';
 export * from './header/Header';
 export * from './header/HeaderLink';
 export * from './header/UserOptionDd';
+export * from './table/TableActionBtn';
 export * from './table/Td';
 export * from './table/Th';

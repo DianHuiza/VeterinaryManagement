@@ -69,7 +69,7 @@ export interface Pet {
   name: string;
   species: string;
   breed: string;
-  birthday: Date;
+  birthday: string;
   deletedAt?: string;
   medicalRecordPath?: string;
 }
