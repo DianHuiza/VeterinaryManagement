@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import { clientsList } from '../../../mocks/Clients';
-import { EllipsisVertical } from '../../../assets/icons/EllipsisVertical';
+import { ClientOptionsDropdown } from './ClientOptionDropdown';
 
 export const ClientList: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -24,7 +24,7 @@ export const ClientList: React.FC = () => {
             <p>{client.dni}</p>
           </div>
           <div className='flex items-center'>
-            <button className=' p-1'><EllipsisVertical className='text-dark size-6' /></button>
+            <ClientOptionsDropdown clientId={client.id} />
           </div>
         </div>
       ))}
