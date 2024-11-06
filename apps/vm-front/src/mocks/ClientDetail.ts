@@ -6,6 +6,7 @@ export const clientDetail = {
   dni: '123456789',
   pets: [
     {
+      id: 'pet_random_uuid1',
       name: 'Peter',
       species: 'Perro',
       breed: 'Labrador',
@@ -13,6 +14,7 @@ export const clientDetail = {
       medicalRecordPath: 'medical_records/123456789',
     },
     {
+      id: 'pet_random_uuid2',
       name: 'Musulini',
       species: 'Perro',
       breed: 'Labrador',
@@ -20,6 +22,7 @@ export const clientDetail = {
       medicalRecordPath: 'medical_records/123456789',
     },
     {
+      id: 'pet_random_uuid3',
       name: 'Juan',
       species: 'Perro',
       breed: 'Labrador',
