@@ -28,14 +28,14 @@ export const PetsTable: React.FC<PetsTableProps> = ({ pets }) => {
         </thead>
         <tbody>
           {pets.map((pet) => (
-            <tr className=' border-b border-secondary' key={pet.name}>
+            <tr className=' border-b border-secondary' key={pet.id}>
               <Td>{pet.name}</Td>
               <Td>{pet.species}</Td>
               <Td>{pet.breed}</Td>
               <Td>{pet.birthday}</Td>
               <Td>
                 <div className='flex gap-2 items-center'>
-                  <TableActionBtn><EditIcon className='size-5' /></TableActionBtn>
+                  <TableActionBtn className='flex items-center'><EditIcon className='size-5' /> Ir al Editor</TableActionBtn>
                   <TableActionBtn><DownloadIcon className='size-5' /></TableActionBtn>
                 </div>
               </Td>
