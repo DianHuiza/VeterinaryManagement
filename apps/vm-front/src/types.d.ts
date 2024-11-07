@@ -69,12 +69,9 @@ export interface Pet {
   name: string;
   species: string;
   breed: string;
-  birthday: Date;
-  clientId: string;
-  deletedAt?: Date;
+  birthday: string;
+  deletedAt?: string;
   medicalRecordPath?: string;
-  appointments: Appointment[];
-  currentRoom?: Room;
 }
 
 export interface PetWithClient extends Pet {
@@ -122,4 +119,8 @@ export enum DataType {
   STRING = 'STRING',
   BOOLEAN = 'BOOLEAN',
   DATE = 'DATE',
+}
+
+export interface IconProps {
+  className?: string;
 }

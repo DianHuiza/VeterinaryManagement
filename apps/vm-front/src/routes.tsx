@@ -33,7 +33,7 @@ const routes = [
         element: <Clients />,
         children: [
           {
-            path: 'info:id',
+            path: 'info/:id',
             element: <ClientInfo />,
           },
         ],
