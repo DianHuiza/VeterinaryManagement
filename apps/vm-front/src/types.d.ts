@@ -18,8 +18,12 @@ export interface Position {
   employees: Employee[];
 }
 
-export interface Client {
+export interface Client extends CreateClient {
   id: string;
+  
+}
+
+export interface CreateClient {
   dni: string;
   fullName: string;
   email: string;
