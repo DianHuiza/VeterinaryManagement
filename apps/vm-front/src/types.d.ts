@@ -20,8 +20,11 @@ export interface Position {
 
 export interface Client extends CreateClient {
   id: string;
-  
 }
+
+export interface ClientListed extends Pick<Client, 'id' | 'fullName' | 'dni'> {}
+
+export type ClientsListedNames = ClientListed[]
 
 export interface CreateClient {
   dni: string;

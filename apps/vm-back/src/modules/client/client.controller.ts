@@ -9,7 +9,7 @@ import {
   updateClientSchema,
 } from './dto/client_zod';
 
-@Controller('client')
+@Controller('clients')
 export class ClientController {
   constructor(private readonly clientService: ClientService) {}
 
@@ -17,6 +17,12 @@ export class ClientController {
   async getAllClients(@Query() query) {
     const { page, includeDeleted = false } = query;
     return this.clientService.getAllClients(page, includeDeleted);
+  }
+
+  @Get('listed')
+  async getListedClients(@Query() query) {
+    const { page, includeDeleted = false } = query;
+    return this.clientService.getListedClients(page, includeDeleted);
   }
 
   @Get(':id')

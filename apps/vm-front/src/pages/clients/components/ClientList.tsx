@@ -1,14 +1,14 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
-import { clientsList } from '../../../mocks/Clients';
-import { ClientOptionsDropdown } from './ClientOptionDropdown';
+import { getClientsListedNames } from '../../../services/clients/getListedNames';
+import { ClientListItem } from './ClientListItem';
 
 export const ClientList: React.FC = () => {
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('query') ?? '';
   const { data } = useInfiniteQuery({
     queryKey: ['clients', searchQuery],
-    queryFn: () => clientsList,
+    queryFn: ({pageParam}) => getClientsListedNames(searchQuery, pageParam),
     initialPageParam: 1,
     getNextPageParam: () => 1
   })
@@ -18,15 +18,7 @@ export const ClientList: React.FC = () => {
   return (
     <div>
       {clients.map((client) => (
-        <div className=' flex justify-between border-b border-secondary px-2'>
-          <div>
-            <p>{client.name}</p>
-            <p>{client.dni}</p>
-          </div>
-          <div className='flex items-center'>
-            <ClientOptionsDropdown clientId={client.id} />
-          </div>
-        </div>
+        <ClientListItem client={client} />
       ))}
     </div>
   );

@@ -15,9 +15,6 @@ export const ClientOptionsDropdown: React.FC<ClientOptionsDropdownProps> = ({ cl
         <button>Agregar Mascota</button>
       </DropdownItem>
       <DropdownItem>
-        <button>Editar</button>
-      </DropdownItem>
-      <DropdownItem>
         <button>Eliminar</button>
       </DropdownItem>
     </Dropdown>

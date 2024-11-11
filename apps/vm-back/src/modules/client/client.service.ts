@@ -15,6 +15,16 @@ export class ClientService {
     });
   }
 
+  async getListedClients(page: number, includeDeleted: boolean) {
+    return this.prisma.client.findMany({
+      skip: page * 15,
+      take: 15,
+      where: {
+        deletedAt: includeDeleted ? undefined : { not: null },
+      },
+    });
+  }
+
   async getClientById(id: string) {
     return this.prisma.client.findUnique({
       where: {
