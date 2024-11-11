@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PositionDTO, UpdatePositionDTO } from './dto/position_zod';
+import { PrismaService } from 'src/modules/prisma/prisma.service';
 
 @Injectable()
 export class PositionService {

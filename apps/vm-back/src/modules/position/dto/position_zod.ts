@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const PositionSchema = z.object({
-  name: z.string(),
+  position: z.string(),
   description: z.string(),
 });
 

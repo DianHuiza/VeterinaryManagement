@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from 'src/modules/prisma/prisma.service';
 import { PetDTO, UpdatePetDTO } from './dto/pet_zod';
-import { SupabaseService } from 'src/supabase.service';
+import { SupabaseService } from 'src/modules/supabase/supabase.service';
 import { Express } from 'express';
 
 @Injectable()
