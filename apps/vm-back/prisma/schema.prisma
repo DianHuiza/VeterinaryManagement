@@ -42,7 +42,7 @@ model Client {
   phone     String
   address   String
   deletedAt DateTime?
-  Pets      Pet[]
+  pets      Pet[]
 }
 
 model Service {
@@ -86,7 +86,8 @@ model Pet {
   name              String
   species           String
   breed             String
-  birthday          DateTime
+  genre             Genre
+  birthday          DateTime      @db.Date
   client            Client        @relation(fields: [clientId], references: [id], onDelete: Cascade)
   clientId          String
   deletedAt         DateTime?
@@ -134,4 +135,9 @@ enum DataType {
   STRING
   BOOLEAN
   DATE
+}
+
+enum Genre {
+  MALE
+  FEMALE
 }

@@ -15,7 +15,7 @@ export class ClientController {
 
   @Get()
   async getAllClients(@Query() query) {
-    const { page, includeDeleted = false } = query;
+    const { page = 0, includeDeleted = false } = query;
     return this.clientService.getAllClients(page, includeDeleted);
   }
 

@@ -22,7 +22,7 @@ export class AppointmentService {
     tomorrow.setDate(tomorrow.getDate() + 1);
     return this.prisma.appointment.findMany({
       where: {
-        date: {
+        initDate: {
           gte: today,
           lt: tomorrow,
         },
@@ -34,7 +34,7 @@ export class AppointmentService {
     today.setHours(0, 0, 0, 0);
     return this.prisma.appointment.findMany({
       where: {
-        date: {
+        initDate: {
           lt: today,
         },
         canceledAt: includeDeleted ? undefined : null,
@@ -48,7 +48,7 @@ export class AppointmentService {
     today.setHours(23, 59, 59, 999);
     return this.prisma.appointment.findMany({
       where: {
-        date: {
+        initDate: {
           gte: today,
         },
         canceledAt: includeDeleted ? undefined : null,
@@ -67,7 +67,8 @@ export class AppointmentService {
   async create(data: AppointmentDTO) {
     return this.prisma.appointment.create({
       data: {
-        date: data.date,
+        initDate: data.initDate,
+        endDate: data.endDate,
         reason: data.reason,
         pet: {
           connect: {
@@ -90,7 +91,8 @@ export class AppointmentService {
   async update(id: string, data: UpdateAppointmentDTO) {
     const updateData: Prisma.AppointmentUpdateInput = {
       reason: data.reason,
-      date: data.date,
+      initDate: data.initDate,
+      endDate: data.endDate,
     };
     if (data.roomId) {
       updateData.room = { connect: { id: data.roomId } };

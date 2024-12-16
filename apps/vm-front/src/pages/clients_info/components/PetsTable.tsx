@@ -1,8 +1,6 @@
-import { DownloadIcon } from '../../../assets/icons/DownloadIcon';
-import { EditIcon } from '../../../assets/icons/EditIcon';
-import { Td, Th, TableActionBtn } from '../../../components';
+import { Th } from '../../../components';
 import { Pet } from '../../../types';
-import { PetOptionDropdown } from './PetOptionsDropdown';
+import { PetRow } from './PetRow';
 
 interface PetsTableProps {
   pets: Array<Pet>;
@@ -28,21 +26,7 @@ export const PetsTable: React.FC<PetsTableProps> = ({ pets }) => {
         </thead>
         <tbody>
           {pets.map((pet) => (
-            <tr className=' border-b border-secondary' key={pet.id}>
-              <Td>{pet.name}</Td>
-              <Td>{pet.species}</Td>
-              <Td>{pet.breed}</Td>
-              <Td>{pet.birthday}</Td>
-              <Td>
-                <div className='flex gap-2 items-center'>
-                  <TableActionBtn className='flex items-center'><EditIcon className='size-5' /> Ir al Editor</TableActionBtn>
-                  <TableActionBtn><DownloadIcon className='size-5' /></TableActionBtn>
-                </div>
-              </Td>
-              <td className='text-left'>
-                <PetOptionDropdown />
-              </td>
-            </tr>
+            <PetRow pet={pet} />
           ))}
         </tbody>
       </table>

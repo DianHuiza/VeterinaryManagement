@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { Appointments, AppointmentsMissed, AppointmentsPending, AppointmentsToday, ClientInfo, Clients, Dashboard } from './pages'
+import { AddPet, Appointments, AppointmentsMissed, AppointmentsPending, AppointmentsToday, ClientCreate, ClientInfo, Clients, Dashboard } from './pages'
 import BaseLayout from './layout/BaseLayout'
 
 const routes = [
@@ -36,6 +36,14 @@ const routes = [
             path: 'info/:id',
             element: <ClientInfo />,
           },
+          {
+            path: 'create',
+            element: <ClientCreate />
+          },
+          {
+            path: 'add-pet/:id',
+            element: <AddPet />
+          }
         ],
       },
     ],

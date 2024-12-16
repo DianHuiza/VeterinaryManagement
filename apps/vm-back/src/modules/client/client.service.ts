@@ -10,7 +10,7 @@ export class ClientService {
       skip: page * 15,
       take: 15,
       where: {
-        deletedAt: includeDeleted ? undefined : { not: null },
+        deletedAt: includeDeleted ? undefined : null,
       },
     });
   }
@@ -20,7 +20,7 @@ export class ClientService {
       skip: page * 15,
       take: 15,
       where: {
-        deletedAt: includeDeleted ? undefined : { not: null },
+        deletedAt: includeDeleted ? undefined : null,
       },
     });
   }
@@ -29,6 +29,9 @@ export class ClientService {
     return this.prisma.client.findUnique({
       where: {
         id,
+      },
+      include: {
+        pets: true,
       },
     });
   }

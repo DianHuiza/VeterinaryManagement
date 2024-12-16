@@ -13,9 +13,8 @@ import { PetService } from './pet.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { PetDTO, petSchema } from './dto/pet_zod';
 import { ZodPipe } from 'src/pipes/zod.pipe';
-import { randomUUID } from 'crypto';
 
-@Controller('pet')
+@Controller('pets')
 export class PetController {
   constructor(private readonly petService: PetService) {}
   @Get()
@@ -32,23 +31,6 @@ export class PetController {
     @Body(new ZodPipe(petSchema)) pet: PetDTO,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    if (!file) {
-      const mdFileName = `${pet.name}.md`;
-      const buffer = Buffer.from('', 'utf8');
-      file = {
-        fieldname: 'medicalRecord',
-        originalname: mdFileName,
-        encoding: '7bit',
-        mimetype: 'text/markdown',
-        buffer: buffer,
-        stream: undefined,
-        destination: '',
-        filename: mdFileName,
-        path: '',
-        size: 0,
-      };
-    }
-    file.filename = `${pet.name}-${randomUUID()}.md`;
     return this.petService.create(pet, file);
   }
   @Put(':id')

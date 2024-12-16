@@ -10,6 +10,7 @@ import { PositionModule } from './modules/position/position.module';
 import { PetModule } from './modules/pet/pet.module';
 import { AppointmentModule } from './modules/appointment/appointment.module';
 import { OptionsModule } from './modules/options/options.module';
+import { TemplatesModule } from './modules/templates/templates.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { OptionsModule } from './modules/options/options.module';
     PetModule,
     AppointmentModule,
     OptionsModule,
+    TemplatesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import { EditIcon } from '../../../assets/icons/EditIcon'
 import { CheckIcon } from '../../../assets/icons/CheckIcon'
 import { XMarkIcon } from '../../../assets/icons/XMarkIcon'
+import { ZodSchema } from 'zod'
+import { useToggleShow } from '../../../hooks/useToggleShow'
 
 interface InfoEditableFieldProps {
   labelContent: JSX.Element
@@ -9,37 +11,50 @@ interface InfoEditableFieldProps {
   type: string
   id: string
   name: string
+  editFn: (...props: any) => Promise<any>
+  validationSchema?: ZodSchema
 }
 
-const InfoEditableField: React.FC<InfoEditableFieldProps> = ({ labelContent, content, type, id, name }) => {
-  const [isEditable, setIsEditable] = useState<boolean>(false)
+export const InfoEditableField: React.FC<InfoEditableFieldProps> = ({ labelContent, editFn, validationSchema, content = '', type, id, name }) => {
+  const {isActive, toggleIsActive, setIsActive: setIsEditable, ref: divRef} = useToggleShow<HTMLDivElement>() 
   const inputRef = useRef<HTMLInputElement>(null)
 
-  useEffect(() => {
-    if (isEditable && inputRef.current){
-      inputRef.current?.focus()
+  const cancelHandler: React.MouseEventHandler<HTMLButtonElement> = () => {
+    if (inputRef.current) {
+      if (isActive) {
+        inputRef.current.value = content
+      }else{
+        inputRef.current.focus()
+      }
+      toggleIsActive() 
     }
-  },[isEditable])
+  }
+
+  const submitHandler: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault()
+    const formObject = Object.fromEntries(new FormData(e.currentTarget).entries())
+    const editedField = validationSchema ? validationSchema.parse(formObject) : formObject
+    editFn(editedField).then(() => {
+      setIsEditable(false)
+    }).catch(err => {
+      console.log(err)
+    })
+    console.log(editedField)
+  }
+  console.log(isActive)
 
   return (
-    <div className=''>
-      <form className=' group flex items-center gap-2 relative w-max'>
+    <div className='' >
+      <form  onSubmit={submitHandler} className=' group flex items-center gap-2 relative w-max'>
         <label htmlFor="">{labelContent}</label>
-        {isEditable ? (
-          <input className='min-w-40 px-2 py-1 focus:outline-none' ref={inputRef} type={type} id={id} name={name} defaultValue={content}/>
-        ): (
-          <span className='inline-block min-w-40 px-2 py-1'>{content}</span>
-          ) 
-        }
-        <span className={`${isEditable ? 'inline' : 'group-hover:inline hidden'} `}>
-          <button type='button' onClick={() => setIsEditable(curr => !curr)} className='rounded-md bg-primary text-light'>
-            {isEditable ? <XMarkIcon /> :  <EditIcon />}
+        <input className='min-w-40 px-2 py-1 focus:outline-none truncate' ref={inputRef} type={type} id={id} name={name} defaultValue={content} readOnly={!isActive}/>
+        <div ref={divRef} className={`${isActive ? 'inline' : 'group-hover:inline hidden'} `}>
+          <button type='button' onClick={cancelHandler} className='rounded-md bg-primary text-light'>
+            {isActive ? <XMarkIcon /> :  <EditIcon />}
           </button>
-          {isEditable && <button type='submit' className='ml-2 rounded-md bg-primary text-light'><CheckIcon /></button>}
-        </span>
+          {isActive && <button type='submit' className='ml-2 rounded-md bg-primary text-light'><CheckIcon /></button>}
+        </div>
       </form>
     </div>
   );
 }
-
-export default InfoEditableField;

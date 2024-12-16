@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-interface FormProps extends React.HTMLAttributes<HTMLFormElement> {
+interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
   controlOnSubmit: boolean
 }
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useToggleShow } from '../../hooks/useToggleShow'
 
 interface DropdownProps {
   children: React.ReactNode
@@ -7,16 +7,17 @@ interface DropdownProps {
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({ children, trigger, className = '' }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const {isActive, toggleIsActive, ref} = useToggleShow<HTMLDivElement>();
 
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
+  const handleClick = (e:React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation()
+    toggleIsActive()
+  }
 
   return (
-    <div onClick={handleClick} className='relative w-max'>
+    <div ref={ref} onClick={handleClick} className='relative w-max'>
       {trigger}
-      {isOpen && (
+      {isActive && (
         <div className={` min-w-max absolute right-0 shadow-lg rounded-lg overflow-hidden z-10 ${className}`}>
           {children}
         </div>

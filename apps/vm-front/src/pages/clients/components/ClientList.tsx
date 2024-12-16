@@ -9,8 +9,8 @@ export const ClientList: React.FC = () => {
   const { data } = useInfiniteQuery({
     queryKey: ['clients', searchQuery],
     queryFn: ({pageParam}) => getClientsListedNames(searchQuery, pageParam),
-    initialPageParam: 1,
-    getNextPageParam: () => 1
+    initialPageParam: 0,
+    getNextPageParam: () => 0
   })
 
   const clients = data?.pages.flatMap(page => page) ?? []

@@ -3,9 +3,9 @@ import { FormTitle } from '../../components/form/FormTitle'
 import { Label } from '../../components/form/Label'
 import { Input } from '../../components/form/Input'
 import { FormField, RoundedButton } from '../../components'
-import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query'
-import { clientSchema } from '@vm/validation'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createClient } from '../../services/clients/create'
+import { clientSchema } from '../../utils/validations/client'
 
 export const Component: React.FC = () => {
   // const queryClient = useQueryClient()
@@ -34,7 +34,9 @@ export const Component: React.FC = () => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
     const newClient = clientSchema.parse(Object.fromEntries(formData.entries()))
+    console.log(newClient)
     createClient(newClient)
+    console.log('se creo?')
   }
   
   return (

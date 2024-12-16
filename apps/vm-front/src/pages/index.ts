@@ -5,3 +5,5 @@ export { Component as Appointments } from './appointments/page';
 export { Component as AppointmentsToday } from './appointments_today/page';
 export { Component as AppointmentsMissed } from './appointments_missed/page';
 export { Component as AppointmentsPending } from './appointments_pending/page';
+export { Component as ClientCreate} from './client_create/page';
+export { Component as AddPet } from './client_add_pet/page';

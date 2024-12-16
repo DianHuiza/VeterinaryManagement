@@ -4,7 +4,8 @@ export const petSchema = z.object({
   name: z.string(),
   species: z.string(),
   breed: z.string(),
-  birthday: z.string(),
+  genre: z.enum(['MALE', 'FEMALE']),
+  birthday: z.string().datetime(),
   clientId: z.string().uuid(),
 });
 

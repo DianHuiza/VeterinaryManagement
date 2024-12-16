@@ -81,6 +81,8 @@ export interface Pet {
   medicalRecordPath?: string;
 }
 
+export type CreatePet = Omit<Pet, "id" | "deletedAt" | 'medicalRecordPath'>
+
 export interface PetWithClient extends Pet {
   client: Client
 }
